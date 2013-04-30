@@ -12,6 +12,10 @@
   <script type="text/x-handlebars" data-template-name="application">
     <h1>Hello Ember.JS</h1>
     
+    {{#linkTo "index"}}Home{{/linkTo}} |
+    {{#linkTo "about"}}About{{/linkTo}} |
+    {{#linkTo "contact"}}Contact{{/linkTo}}
+
     <p>
     helloString application = {{globalString}}
     </p>
