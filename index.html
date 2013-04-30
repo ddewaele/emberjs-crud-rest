@@ -11,14 +11,29 @@
 
   <script type="text/x-handlebars" data-template-name="application">
     <h1>Hello Ember.JS</h1>
+    
+    <p>
+    helloString application = {{globalString}}
+    </p>
+
     {{outlet}}
   </script>  
 
 
     <script type="text/x-handlebars" data-template-name="index" >
       <p>This is the homepage....</p>
+
+      <p>helloString application = {{globalString}}</p>
+      <p>helloString index = {{helloString}}</p>
     </script>
 
+  <script type="text/x-handlebars" data-template-name="about" >
+      <p>This is the about....</p>
+
+      <p>helloString application = {{globalString}}</p>
+      <p>helloString about = {{helloString}}</p>
+        
+    </script>
 
   <script src="js/jquery-1.9.1.js"></script>
   <script src="js/handlebars-1.0.0-rc.3.js"></script>
