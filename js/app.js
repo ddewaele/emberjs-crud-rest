@@ -3,6 +3,7 @@ App = Ember.Application.create({ LOG_TRANSITIONS: true});
 App.Router.map(function() {
   this.route("index", { path: "/" });
   this.route("about", { path: "/about" });
+  this.route("locations", { path: "/locations" });
 });
 
 App.ApplicationController = Ember.Controller.extend({
@@ -10,49 +11,44 @@ App.ApplicationController = Ember.Controller.extend({
   // some property of our controller.
   globalString: 'this is the application string',
 
+});
 
+  App.Adapter = DS.RESTAdapter.extend({
+    serializer: DS.RESTSerializer.extend({
+      primaryKey: function (type){
+        return '_id';
+     }
+    })
+  });
+
+App.Store = DS.Store.extend({
+  revision: 12,
+  adapter: 'App.Adapter'
+});
+
+DS.RESTAdapter.reopen({
+  url: 'http://localhost:3000'
+});
+
+
+App.Location = DS.Model.extend({
+    latitude: DS.attr('string'),
+    longitude: DS.attr('string'),
+    accuracy: DS.attr('string')
+
+});
+
+App.LocationsRoute = Ember.Route.extend({
+  
   model: function() {
-    console.log(" -- Inside App.ApplicationController");
-  },
-
-  query: function() {
-    // the current value of the text field
-    var query = this.get('search');
-    this.transitionToRoute('search', { query: query });
+    return App.Location.find();
   }
+  
+  // setupController: function(controller) {
+  //   console.log("Returning locations from route...");
+  //   controller.set('content', App.Location.find());
+  // }
 });
 
 
-App.IndexController = Ember.Controller.extend({
 
-  helloString: 'this is the index string',
-
-  model: function() {
-    console.log(" -- Inside App.IndexController");
-  },
-  activate: function() {
-    console.log("activate");
-  },
-
-  deactivate: function() {
-    console.log("deactivate");
-  }  
-
-});
-
-App.AboutController = Ember.Controller.extend({
-
-  helloString: 'this is the about string',
-
-  model: function() {
-    console.log(" -- Inside App.AboutController");
-  },
-  activate: function() {
-    console.log("activate");
-  },
-
-  deactivate: function() {
-    console.log("deactivate");
-  }  
-
-});
