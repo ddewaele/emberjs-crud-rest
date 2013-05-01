@@ -145,9 +145,9 @@ We'll also define our Model :
 
 	});
 
-Once we have the store and the model defined, we can start interacting with our model.
 
-In the browser console, typ the following command to create a new record :
+
+Once we have the store and the model defined, we can already start interacting with our model. Note that we haven't defined any templates yet so we won't be able to see anything on the screen, but you can already get a feel of the API by going into the browser console, and typing the following command to create a new record :
 
 	newLocation = App.Location.createRecord({latitude:3.1232, longitude:5.321312, accuracy:6000});
 
@@ -161,6 +161,8 @@ You can access the properties of the record like this:
 IF you want to persist your model you retrieve a reference to the transaction and call commit:
 
 	newLocation.transaction.commit();	
+
+
 
 
 Our REST server is built using Node.JS and is using MongoDB for storage. When persisting objects in MongoDB it automatically adds an identifier to the object using the field "_id".
