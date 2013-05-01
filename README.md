@@ -68,10 +68,10 @@ If we now go to the index, you'll see that "Hello Ember.JS" is rendered on the s
 
 It's important to realize at this point that Ember.JS has done a lot of things. In fact, it has constructed and used a lot of Core Ember Concepts, including
 
--A router
--A controller
--A view
--Templates
+- A router
+- A controller
+- A view
+- Templates
 
 And yet, the only thing we needed to do was create a template. So how did all of this happen ?
 
@@ -106,17 +106,15 @@ We'll do some more advanced stuff with our routers in a second....
 
 Ember has also create 2 controllers
 
-- The ApplicationController
+-The ApplicationController
 
 	App.ApplicationController = Ember.Controller.extend({
-	  
 	});
 
 
-- The IndexController
+-The IndexController
 
 	App.IndexController = Ember.Controller.extend({
-
 	});
 
 ### Models

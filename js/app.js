@@ -57,14 +57,15 @@ App.Location = DS.Model.extend({
 
 App.LocationsRoute = Ember.Route.extend({
   
-  // model: function() {
-  //   return App.Location.find();
-  // }
-
-setupController: function(controller) {
-    console.log("Returning locations from route...");
-    controller.set('content', App.Location.find());
+  model: function() {
+  	console.log("returning locations");
+    return App.Location.find();
   }
+
+// setupController: function(controller) {
+//     console.log("Returning locations from route...");
+//     controller.set('content', App.Location.find());
+//   }
   
 
   // renderTemplate: function() {

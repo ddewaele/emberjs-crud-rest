@@ -29,12 +29,12 @@
   <script type="text/x-handlebars" data-template-name="locations">
   locations template... length = {{content.length}}
     <table>
-      {{#each location in model}}
+      {{#each this}}
         <tr>
-        <td>{{location.latitude}}</td>
-        <td>{{location.longitude}}</td>
-        <td>{{location.accuracy}}</td>
-        <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+        <td>{{latitude}}</td>
+        <td>{{longitude}}</td>
+        <td>{{accuracy}}</td>
+        <td>{{#linkTo locations.edit this}}Edit{{/linkTo}}</td>
         </tr>
       {{/each}}
     </table>
