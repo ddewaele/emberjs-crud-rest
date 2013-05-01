@@ -98,8 +98,17 @@ App.LocationsNewController = Ember.ObjectController.extend({
     //this.get("target").transitionTo("locations");
     location.transaction.commit();
     this.get("target").transitionTo("locations");
-    
-  }
+  },
+
+  isNewObject: function() {
+  	console.log("inside isNewObject");
+  	return true;
+  }.property(),
+
+  dataFromController: function() {
+  	return "dataFromControllerValue";
+  }.property()
+
 });
 
 

@@ -398,6 +398,3 @@ In order to fix this, we need to prepare a new record before we tranition to the
 
 The LocationsNewRout provides an empty model that we can use to populate, and then save it as a new location.
 
-
-
-
