@@ -4,20 +4,8 @@ App.Router.map(function() {
   this.route("index", { path: "/" });
   this.route("about", { path: "/about" });
 
-
-  
-  // this.resource("locations", function(){
-  //     console.log("Inside locations....");
-  //     this.route("new", {path:"/new"});
-  //     this.route("edit", {path: "/:location_id" });
-  // });
-
-
-      this.route("locations", {path:"/locations"});
-      this.route("locations.edit", {path: "/locations/:location_id" });
-
-  //this.route("locations", { path: "/locations" });
- //this.route("locations/edit", { path: "/locations/:location_id" });
+  this.route("locations", {path:"/locations"});
+  this.route("locations.edit", {path: "/locations/:location_id" });
 
 });
 
