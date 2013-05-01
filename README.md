@@ -216,12 +216,12 @@ In order for our link to work we need a route definition to support the transiti
 
 We also need a route object below will set up a Controller to provide the data
 
-App.LocationsRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    console.log("Returning locations from route...");
-    controller.set('content', App.Location.find());
-  }
-});
+	App.LocationsRoute = Ember.Route.extend({
+	  setupController: function(controller) {
+	    console.log("Returning locations from route...");
+	    controller.set('content', App.Location.find());
+	  }
+	});
 
 ### A template
 
@@ -230,13 +230,13 @@ And finally we need a template that loops over the model. (notice how content an
 
 	<script type="text/x-handlebars" data-template-name="locations" >
 	<table>
-	      {{#each location in model}}
-	    <tr>
-	    <td>{{location.latitude}}</td>
-	    <td>{{location.longitude}}</td>
-	    <td>{{location.accuracy}}</td>
-	    </tr>
-	  {{/each}}
+		{{#each location in model}}
+		    <tr>
+		    <td>{{location.latitude}}</td>
+		    <td>{{location.longitude}}</td>
+		    <td>{{location.accuracy}}</td>
+		    </tr>
+		{{/each}}
 	</table>
 	</script>
 
@@ -268,9 +268,11 @@ There are 2 ways to implement a master/detail screen.
 
 #### Master and detail is on the same page.
 
-We can organize our templates in such a way that the locations overview template (locations) is the parent of the detail location template (locations.edit). The way Ember.JS processes templates is 
+We can organize our templates in such a way that the locations overview template (locations) is the parent of the detail location template (locations.edit). Again, Ember does this through naming conventions.
 
-Because "locations" is a parent for "locations.edit", the edit template will be shown together with its parent.
+"locations" is considered a parent of the "locations.edit" template. This means that the edit template will be shown together with its parent, providing that the parent has an ```{{outlet}}``` defined.
+
+[TODO insert picture]
 
 If you want to seperate master and detail in 2 seperate pages, you need to put the 2 templates on the same level.
 
@@ -279,6 +281,8 @@ If you want to seperate master and detail in 2 seperate pages, you need to put t
 In order to have a seperate master and detail we need to re-organize our templates.
 
 Instead of having a "locations" - "locations.edit" template hierarchy, we'll put both templates on the same level by renaming locations to "locations.index".
+
+[TODO insert picture]
 
 Keep in mind that this forces us to rename our Router as well :
 
