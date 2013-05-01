@@ -13,8 +13,25 @@ App.ApplicationController = Ember.Controller.extend({
 
 });
 
+// App.Store = DS.Store.extend({
+//   revision: 12
+// });
+
+App.Adapter = DS.RESTAdapter.extend({
+  serializer: DS.RESTSerializer.extend({
+    primaryKey: function (type){
+      return '_id';
+   }
+  })
+});
+
 App.Store = DS.Store.extend({
-  revision: 12
+  revision: 12,
+  adapter: 'App.Adapter'
+});
+
+DS.RESTAdapter.reopen({
+  url: 'http://localhost:3000'
 });
 
 App.Location = DS.Model.extend({
