@@ -26,7 +26,8 @@
   </script>
 
 
-  <script type="text/x-handlebars" data-template-name="locations/index">
+  <script type="text/x-handlebars" data-template-name="locations">
+  locations template... length = {{content.length}}
     <table>
       {{#each location in model}}
         <tr>
@@ -38,8 +39,8 @@
       {{/each}}
     </table>
 
-    {{outlet}}
   </script>
+
 
 
   <script type="text/x-handlebars" data-template-name="locations/edit" >
