@@ -26,19 +26,22 @@
   </script>
 
 
-  <script type="text/x-handlebars" data-template-name="locations">
-  locations template... length = {{content.length}}
+  <script type="text/x-handlebars" data-template-name="locations/index">
+  <p>
+    locations template... length = {{content.length}}
+  </p>
     <table>
       {{#each location in model}}
         <tr>
         <td>{{location.latitude}}</td>
         <td>{{location.longitude}}</td>
         <td>{{location.accuracy}}</td>
-        <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+        <td>{{#linkTo locations.edit location}}Edit2{{/linkTo}}</td>
         </tr>
       {{/each}}
     </table>
 
+    
   </script>
 
 
@@ -49,7 +52,7 @@
           <td>latitude</td><td>{{latitude}}</td>
         </tr>
         <tr>
-          <td>longitude</td><td>{{llongitude}}</td>
+          <td>longitude</td><td>{{longitude}}</td>
         </tr>
         <tr>
           <td>latitude</td><td>{{accuracy}}</td>

@@ -6,18 +6,14 @@ App.Router.map(function() {
 
 
   
-  // this.resource("locations", function(){
-  //     console.log("Inside locations....");
-  //     this.route("new", {path:"/new"});
-  //     this.route("edit", {path: "/:location_id" });
-  // });
+  this.resource("locations", function(){
+      console.log("Inside locations....");
+      this.route("new", {path:"/new"});
+      this.route("edit", {path: "/:location_id" });
+  });
 
-
-      this.route("locations", {path:"/locations"});
-      this.route("locations.edit", {path: "/locations/:location_id" });
-
-  //this.route("locations", { path: "/locations" });
- //this.route("locations/edit", { path: "/locations/:location_id" });
+  // this.route("locations", {path:"/locations"});
+  // this.route("locations.edit", {path: "/locations/:location_id" });
 
 });
 
@@ -55,12 +51,12 @@ App.Location = DS.Model.extend({
 
 
 
-App.LocationsRoute = Ember.Route.extend({
+App.LocationsIndexRoute = Ember.Route.extend({
   
   model: function() {
   	console.log("returning locations");
     return App.Location.find();
-  }
+  },
 
 // setupController: function(controller) {
 //     console.log("Returning locations from route...");
@@ -68,10 +64,10 @@ App.LocationsRoute = Ember.Route.extend({
 //   }
   
 
-  // renderTemplate: function() {
-  //   console.log("Rendering locationsRouteTemplate");
-  //   this.render('locations',{into:'application'});
-  // }
+  renderTemplate: function() {
+    console.log("Rendering locationsRouteTemplate");
+    this.render('locations.index',{into:'application'});
+  }
 
 });
 
