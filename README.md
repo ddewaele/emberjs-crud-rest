@@ -101,13 +101,17 @@ As you can see, Ember.JS has detected that no route matches this url. So lets cr
 	  this.route("about", { path: "/about" });
 	});
 
-Now when we access the about URL, we'll see that error goes away, and Ember.JS now knows it has transitioned to the "about" route. You might have guessed it, but if we not create an "about" template, you'll see the content in your browser.
+Now when we access the about URL, we'll see that error goes away, and Ember.JS now knows it has transitioned to the "about" route. You might have guessed it, if we want to display something we need to create an "about" template, otherwise EmberJS will only display your application template.
 
-We'll do some more advanced stuff with our routers in a second....
+	 <script type="text/x-handlebars" data-template-name="about" >
+		 <p>This is the about page.</p>
+	 </script>
+
+We'll do some more advanced things with our routers in a while, but what's important to remember is that ... [TODO]
 
 ### The controller.
 
-Ember has also create 2 controllers
+Ember has also create 2 controllers for us:
 
 -The ApplicationController
 
@@ -122,17 +126,17 @@ Ember has also create 2 controllers
 
 ### Models
 
-Models represent the data you want to work with in your application. In this Ember.JS application we'll retrieve and store our data (model) form / to a REST server. 
+Models represent the data you want to work with in your application. Up until now the data that we worked with was static text embedded in our templates. 
 
-Let's start with a simple example :
+In this Ember.JS application we'll retrieve and store our data (model) form / to a REST server. 
 
-We'll define a Store 
+In order to interact with a data store we first need to define it :
 
 	App.Store = DS.Store.extend({
 	  revision: 12
 	});
 
-and a Model
+We'll also define our Model :
 
 	App.Location = DS.Model.extend({
 	    latitude: DS.attr('string'),
