@@ -228,17 +228,17 @@ App.LocationsRoute = Ember.Route.extend({
 And finally we need a template that loops over the model. (notice how content and model are often used referring to the same thing.)
 
 
-  <script type="text/x-handlebars" data-template-name="locations" >
-    <table>
-          {{#each location in model}}
-        <tr>
-        <td>{{location.latitude}}</td>
-        <td>{{location.longitude}}</td>
-        <td>{{location.accuracy}}</td>
-        </tr>
-      {{/each}}
-    </table>
-  </script>
+	<script type="text/x-handlebars" data-template-name="locations" >
+	<table>
+	      {{#each location in model}}
+	    <tr>
+	    <td>{{location.latitude}}</td>
+	    <td>{{location.longitude}}</td>
+	    <td>{{location.accuracy}}</td>
+	    </tr>
+	  {{/each}}
+	</table>
+	</script>
 
 
 An alternative way of creating the each block is like this :
