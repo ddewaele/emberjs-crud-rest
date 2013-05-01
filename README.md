@@ -169,7 +169,7 @@ IF you want to persist your model you retrieve a reference to the transaction an
 
 At this point you'll see that the REST adapter is trying to connect to a REST API running on your local system:
 
-OPTIONS file:///locations  
+	OPTIONS file:///locations  
 
 [TODO explain how this works , CORS , .... ]
 
@@ -204,15 +204,17 @@ In order to show our locations on the screen we need a couple of thing :
 
 ### A link to get us there
 
-{{#linkTo "locations"}}Locations{{/linkTo}} |
+From our homepage we need to transition to the locations route using a link:
+
+	{{#linkTo "locations"}}Locations{{/linkTo}} |
 
 ### A route
 
-We need a route definition that will lead us to the template:
+In order for our link to work we need a route definition to support the transition.
 
-this.route("locations", { path: "/locations" });
+	this.route("locations", { path: "/locations" });
 
-And a route object below will set up a Controller to provide the data
+We also need a route object below will set up a Controller to provide the data
 
 App.LocationsRoute = Ember.Route.extend({
   setupController: function(controller) {
@@ -223,7 +225,7 @@ App.LocationsRoute = Ember.Route.extend({
 
 ### A template
 
-We create a template that loops over the model. (notice how content and model are often used referring to the same thing.)
+And finally we need a template that loops over the model. (notice how content and model are often used referring to the same thing.)
 
 
   <script type="text/x-handlebars" data-template-name="locations" >
@@ -251,12 +253,12 @@ An alternative way of creating the each block is like this :
 
 Providing you have setup your route like this:
 
-App.LocationsRoute = Ember.Route.extend({
-  
-  model: function() {
-    return App.Location.find();
-  }
-});
+	App.LocationsRoute = Ember.Route.extend({
+	  
+	  model: function() {
+	    return App.Location.find();
+	  }
+	});
 
 ### The master-detail
 
