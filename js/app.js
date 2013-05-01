@@ -112,5 +112,16 @@ App.LocationsNewController = Ember.ObjectController.extend({
 });
 
 
+App.LocationsIndexController = Ember.ArrayController.extend({
+  removeItem: function(location) {
+    location.on("didDelete", this, function() {
+		console.log("record deleted");
+    });
+
+    location.deleteRecord();
+    location.transaction.commit();
+  }
+});
+
 
 

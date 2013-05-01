@@ -398,3 +398,30 @@ In order to fix this, we need to prepare a new record before we tranition to the
 
 The LocationsNewRout provides an empty model that we can use to populate, and then save it as a new location.
 
+## Deleting records
+
+Now that we are able to add records we can start implementing the delete. Deleting items doesn't require a template as it is simply an action that is performed on the location overview. 
+
+We'll add a cell to our table to remove a row item.
+
+	<td><button {{action removeItem location}}>Delete</button></td>
+
+This link will not work as we need to implement the removeItem method on our controller.
+
+	Uncaught Error: Nothing handled the event 'removeItem'. 
+
+
+The action will be implemented on the controller. As the action is triggered from the LocationIndex, and we haven't defined a controller for it (but relied on Ember auto-generating a controller), we're going to create it now and expose the ```removeItem``` method on it.
+
+	App.LocationsIndexController = Ember.ArrayController.extend({
+	  removeItem: function(location) {
+	    location.on("didDelete", this, function() {
+			console.log("record deleted");
+	    });
+
+	    location.deleteRecord();
+	    location.transaction.commit();
+	  }
+	});
+
+We're passing the location as an argument to the removeItem method and call the deleteRecord on it.

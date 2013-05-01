@@ -37,6 +37,7 @@
         <td>{{location.longitude}}</td>
         <td>{{location.accuracy}}</td>
         <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+        <td><button {{action removeItem location}}>Delete</button></td>
         </tr>
       {{/each}}
     </table>
