@@ -66,7 +66,9 @@ into
 
 If we now go to the index, you'll see that "Hello Ember.JS" is rendered on the screen, along with the text from our index template.
 
-It's important to realize at this point that Ember.JS has done a lot of things. In fact, it has constructed and used a lot of Core Ember Concepts, including
+## Ember auto generated code.
+
+It's important to realize at even with this trivial example Ember.JS has already done a lot of things in the background. In fact, it has constructed and used a lot of Core Ember Concepts, including
 
 - A router
 - A controller
@@ -75,23 +77,24 @@ It's important to realize at this point that Ember.JS has done a lot of things. 
 
 And yet, the only thing we needed to do was create a template. So how did all of this happen ?
 
-Well, Ember.JS relies heavily on naming conventions. This is something that you'll need to learn upfront. In the background, Ember.JS has created these core concepts that we'll visit one by one.....
+Well, Ember.JS relies heavily on naming conventions. When these naming conventions are applied correctly, Ember.JS can generate a lot of code you. This code generation is done at runtime so you won't even see it or heave to deal with it, but it's something that you'll need to learn upfront. In the background, Ember.JS has created these core concepts that we'll visit one by one.....
 
 
 ### The router.
 
-Ember uses a Router to determine what it should render when the user enters a URL, or transitions from one view to another. In the background, and invisible to us, Ember has created the following "index" route and added it to its map :
+Ember uses a Router to determine what it should render when the user enters a URL or transitions from one view to another. In the background, and invisible to us, Ember has created the following "index" route and added it to its map :
 
 	App.Router.map(function() {
 	  this.route("index", { path: "/" });
 	});
+
+This router makes it possible for us to go the index page, and have EmberJS render the index template for us.	
 
 If you go to another router, for example by going to index.html#/about , you'll see the following error msg :
 
 	Uncaught Error: No route matched the URL '/about' 
 
 As you can see, Ember.JS has detected that no route matches this url. So lets create one....
-
 
 	App.Router.map(function() {
 	  this.route("index", { path: "/" });
