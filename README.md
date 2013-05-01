@@ -460,27 +460,27 @@ In order to do that, replace the following form element code from the ```locatio
 
 In our ```locations/new``` template, add a reference to the partial like this :
 
-  <script type="text/x-handlebars" data-template-name="locations/new" >
-      <h1>New location</h1>
-    
-    {{partial "locationForm"}}
+	<script type="text/x-handlebars" data-template-name="locations/new" >
+	  <h1>New location</h1>
 
-    <p>
-      <button {{action addItem this}}>Add record</button>
-    </p>
+	{{partial "locationForm"}}
 
-  </script>
+	<p>
+	  <button {{action addItem this}}>Add record</button>
+	</p>
+
+	</script>
 
 Our "create" use-case should still work, and now we can create a new template for editing a location
 
-  <script type="text/x-handlebars" data-template-name="locations/edit" >
-      <h1>Edit location</h1>
-      {{partial "locationForm"}}
+	<script type="text/x-handlebars" data-template-name="locations/edit" >
+	  <h1>Edit location</h1>
+	  {{partial "locationForm"}}
 
-      <p>
-        <button {{action updateItem this}}>Update record</button>
-      </p>
-  </script>
+	  <p>
+	    <button {{action updateItem this}}>Update record</button>
+	  </p>
+	</script>
 
 As you can see, the title and the save button differ, so these remain in their corresponding template. The form elements that are identical for both templates have been put in a partial to promote re-use.
 
