@@ -13,23 +13,9 @@ App.ApplicationController = Ember.Controller.extend({
 
 });
 
-  App.Adapter = DS.RESTAdapter.extend({
-    serializer: DS.RESTSerializer.extend({
-      primaryKey: function (type){
-        return '_id';
-     }
-    })
-  });
-
 App.Store = DS.Store.extend({
-  revision: 12,
-  adapter: 'App.Adapter'
+  revision: 12
 });
-
-DS.RESTAdapter.reopen({
-  url: 'http://localhost:3000'
-});
-
 
 App.Location = DS.Model.extend({
     latitude: DS.attr('string'),
@@ -44,10 +30,6 @@ App.LocationsRoute = Ember.Route.extend({
     return App.Location.find();
   }
   
-  // setupController: function(controller) {
-  //   console.log("Returning locations from route...");
-  //   controller.set('content', App.Location.find());
-  // }
 });
 
 
