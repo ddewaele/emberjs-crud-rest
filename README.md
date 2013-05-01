@@ -313,3 +313,91 @@ In order to get rid of the warning we need to override the LocationsEditRoute's 
 For example if you have an invalid route in your linkTo helper, the template will simply not render.
 
 	<td>{{#linkTo locations.edit_invalid location}}Edit{{/linkTo}}</td>	
+
+
+## Adding records
+
+In this section we'll add the possibility to add a record.	
+
+We'll start by adding a link to go to the new record screen
+
+	<p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
+
+We need a route to support the transition:
+
+	this.resource("locations", function(){
+	  this.route("new", {path:"/new"});
+	  this.route("edit", {path: "/:location_id" });
+	});
+
+And a template as well to allow the user to enter data:
+
+	<script type="text/x-handlebars" data-template-name="locations/new" >
+	<form class="form-horizontal">
+	  <div class="control-group">
+	    <label class="control-label" for="latitude">Latitude</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="latitude"}}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="latitude">Longitude</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="longitude"}}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="accuracy">Accuracy</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="accuracy"}}
+	    </div>
+	  </div>
+	</form>
+
+	<p>
+	  <button {{action addItem this}}>Add record</button>
+	</p>
+
+	</script>
+
+Notice how we add a button to screen to perform the addItem button.
+
+	<p>
+	  <button {{action addItem this}}>Add record</button>
+	</p>
+
+When clicking on the button, we see the following message:
+
+	Uncaught Error: Nothing handled the event 'addItem'. 
+
+Actions are defined on Controllers, so we'll create a controller for the new location route and implement a addItem funciton.
+
+	App.LocationsNewController = Ember.ObjectController.extend({
+	  addItem: function(location) {
+	    //this.get("store").commit();
+	    //this.get("target").transitionTo("locations");
+	    location.transaction.commit();
+	    this.get("target").transitionTo("locations");
+	    
+	  }
+	});	
+
+Although we got rid of the error, it is still not working. As soon as we start typing in the input fields we see the following errors popping up :
+
+	Uncaught Error: assertion failed: Cannot delegate set('accuracy', ewe) to the 'content' property of object proxy <App.LocationsNewController:ember272>: its 'content' is undefined. 
+
+On top of that, when we try to save the locstion it fails because the addItem doesn't pass the location properly.
+
+In order to fix this, we need to prepare a new record before we tranition to the new location screen.
+
+	App.LocationsNewRoute = Ember.Route.extend({
+	  model: function() {
+	    return App.Location.createRecord();
+	  }
+	});
+
+The LocationsNewRout provides an empty model that we can use to populate, and then save it as a new location.
+
+
+
+

@@ -36,17 +36,50 @@
         <td>{{location.latitude}}</td>
         <td>{{location.longitude}}</td>
         <td>{{location.accuracy}}</td>
-        <td>{{#linkTo locations.edit location}}Edit2{{/linkTo}}</td>
+        <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
         </tr>
       {{/each}}
     </table>
 
+    <p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
     
   </script>
 
+  <script type="text/x-handlebars" data-template-name="locations/new" >
+    
 
+    object id = {{id}}
+    
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="latitude">Latitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="latitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="latitude">Longitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="longitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="accuracy">Accuracy</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="accuracy"}}
+        </div>
+      </div>
+    </form>
+
+    <p>
+      <button {{action addItem this}}>Add record</button>
+    </p>
+
+  </script>
 
   <script type="text/x-handlebars" data-template-name="locations/edit" >
+    object id = {{id}}
+
     <table>
         <tr>
           <td>latitude</td><td>{{latitude}}</td>

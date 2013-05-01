@@ -53,10 +53,15 @@ App.Location = DS.Model.extend({
 
 App.LocationsIndexRoute = Ember.Route.extend({
   
-  model: function() {
-  	console.log("returning locations");
-    return App.Location.find();
-  },
+  // model: function() {
+  // 	console.log("returning locations");
+  //   return App.Location.find();
+  // },
+
+  setupController: function(controller) {
+    // Set the IndexController's `title`
+    controller.set('content', App.Location.find());
+  }  ,
 
 // setupController: function(controller) {
 //     console.log("Returning locations from route...");
@@ -79,6 +84,24 @@ App.LocationsEditRoute = Ember.Route.extend({
   }
 
 });
+
+App.LocationsNewRoute = Ember.Route.extend({
+  model: function() {
+    return App.Location.createRecord();
+  }
+});
+
+
+App.LocationsNewController = Ember.ObjectController.extend({
+  addItem: function(location) {
+    //this.get("store").commit();
+    //this.get("target").transitionTo("locations");
+    location.transaction.commit();
+    this.get("target").transitionTo("locations");
+    
+  }
+});
+
 
 
 
