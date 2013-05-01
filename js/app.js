@@ -60,7 +60,6 @@ App.LocationsRoute = Ember.Route.extend({
   // model: function() {
   //   return App.Location.find();
   // }
-}
 
 setupController: function(controller) {
     console.log("Returning locations from route...");
