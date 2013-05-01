@@ -111,6 +111,14 @@ App.LocationsNewController = Ember.ObjectController.extend({
 
 });
 
+App.LocationsEditController = Ember.ObjectController.extend({
+  updateItem: function(location) {
+    location.transaction.commit();
+    this.get("target").transitionTo("locations");
+  }
+
+});
+
 
 App.LocationsIndexController = Ember.ArrayController.extend({
   removeItem: function(location) {

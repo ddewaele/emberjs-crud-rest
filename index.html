@@ -47,17 +47,18 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="locations/new" >
-    
-
-    test : {{dataFromController}}
-
-    {{#if controller.isNewObject}}
       <h1>New location</h1>
-    {{else}}
-      <h1>Edit location</h1>
-    {{/if}}
     
-    <form class="form-horizontal">
+    {{partial "locationForm"}}
+
+    <p>
+      <button {{action addItem this}}>Add record</button>
+    </p>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_locationForm" >
+      <form class="form-horizontal">
       <div class="control-group">
         <label class="control-label" for="latitude">Latitude</label>
         <div class="controls">
@@ -77,33 +78,15 @@
         </div>
       </div>
     </form>
-
-    <p>
-    
-    {{#if controller.isNewObject}}
-      <button {{action addItem this}}>Add record</button>
-    {{else}}
-      <button {{action updateItem this}}>Update record</button>
-    {{/if}}    
-      
-    </p>
-
   </script>
 
   <script type="text/x-handlebars" data-template-name="locations/edit" >
-    object id = {{id}}
+      <h1>Edit location</h1>
+      {{partial "locationForm"}}
 
-    <table>
-        <tr>
-          <td>latitude</td><td>{{latitude}}</td>
-        </tr>
-        <tr>
-          <td>longitude</td><td>{{longitude}}</td>
-        </tr>
-        <tr>
-          <td>latitude</td><td>{{accuracy}}</td>
-        </tr>
-    </table>
+      <p>
+        <button {{action updateItem this}}>Update record</button>
+      </p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="about" >

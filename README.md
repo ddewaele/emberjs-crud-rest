@@ -425,3 +425,64 @@ The action will be implemented on the controller. As the action is triggered fro
 	});
 
 We're passing the location as an argument to the removeItem method and call the deleteRecord on it.
+
+## Updating records
+
+For the update scenario we're going to re-use much of the templating we already have in place from the create scenario.
+After all, the form to create or update a record is almost identical.
+
+We could simply copy-paste our ```locations/new``` template into a ```locations/edit``` template, but that would introduce a lot of code duplication. Instead, we're going to use ```parials``` to move the common part out of the template (the form elements).
+
+In order to do that, replace the following form element code from the ```locations/new``` template into a new template called ```_locationForm```. The fact that it starts with an underscore means that it is considered a partial.
+
+	<script type="text/x-handlebars" data-template-name="_locationForm" >
+	  <form class="form-horizontal">
+	  <div class="control-group">
+	    <label class="control-label" for="latitude">Latitude</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="latitude"}}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="latitude">Longitude</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="longitude"}}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="accuracy">Accuracy</label>
+	    <div class="controls">
+	      {{view Ember.TextField valueBinding="accuracy"}}
+	    </div>
+	  </div>
+	</form>
+	</script>
+
+In our ```locations/new``` template, add a reference to the partial like this :
+
+  <script type="text/x-handlebars" data-template-name="locations/new" >
+      <h1>New location</h1>
+    
+    {{partial "locationForm"}}
+
+    <p>
+      <button {{action addItem this}}>Add record</button>
+    </p>
+
+  </script>
+
+Our "create" use-case should still work, and now we can create a new template for editing a location
+
+  <script type="text/x-handlebars" data-template-name="locations/edit" >
+      <h1>Edit location</h1>
+      {{partial "locationForm"}}
+
+      <p>
+        <button {{action updateItem this}}>Update record</button>
+      </p>
+  </script>
+
+As you can see, the title and the save button differ, so these remain in their corresponding template. The form elements that are identical for both templates have been put in a partial to promote re-use.
+
+The last thing we need to do is implement the ```updateItem``` function on our controller.
+
