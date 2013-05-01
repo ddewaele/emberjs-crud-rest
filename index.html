@@ -22,17 +22,37 @@
 
   <script type="text/x-handlebars" data-template-name="index" >
     <p>This is the homepage....</p>
+
   </script>
 
-  <script type="text/x-handlebars" data-template-name="locations" >
+
+  <script type="text/x-handlebars" data-template-name="locations/index">
     <table>
-      {{#each this}}
+      {{#each location in model}}
         <tr>
-        <td>{{latitude}}</td>
-        <td>{{longitude}}</td>
-        <td>{{accuracy}}</td>
+        <td>{{location.latitude}}</td>
+        <td>{{location.longitude}}</td>
+        <td>{{location.accuracy}}</td>
+        <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
         </tr>
       {{/each}}
+    </table>
+
+    {{outlet}}
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="locations/edit" >
+    <table>
+        <tr>
+          <td>latitude</td><td>{{latitude}}</td>
+        </tr>
+        <tr>
+          <td>longitude</td><td>{{llongitude}}</td>
+        </tr>
+        <tr>
+          <td>latitude</td><td>{{accuracy}}</td>
+        </tr>
     </table>
   </script>
 

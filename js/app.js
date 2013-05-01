@@ -3,7 +3,18 @@ App = Ember.Application.create({ LOG_TRANSITIONS: true});
 App.Router.map(function() {
   this.route("index", { path: "/" });
   this.route("about", { path: "/about" });
-  this.route("locations", { path: "/locations" });
+
+
+ //this.route("locations", { path: "/locations" });
+  
+  this.resource("locations", function(){
+      console.log("Inside locations....");
+      this.route("new", {path:"/new"});
+      this.route("edit", {path: "/:location_id" });
+  });
+
+  //this.route("locations/edit", { path: "/locations/:location_id" });
+
 });
 
 App.ApplicationController = Ember.Controller.extend({
@@ -13,13 +24,13 @@ App.ApplicationController = Ember.Controller.extend({
 
 });
 
-  App.Adapter = DS.RESTAdapter.extend({
-    serializer: DS.RESTSerializer.extend({
-      primaryKey: function (type){
-        return '_id';
-     }
-    })
-  });
+App.Adapter = DS.RESTAdapter.extend({
+  serializer: DS.RESTSerializer.extend({
+    primaryKey: function (type){
+      return '_id';
+   }
+  })
+});
 
 App.Store = DS.Store.extend({
   revision: 12,
@@ -38,16 +49,25 @@ App.Location = DS.Model.extend({
 
 });
 
-App.LocationsRoute = Ember.Route.extend({
+App.LocationsIndexRoute = Ember.Route.extend({
   
   model: function() {
     return App.Location.find();
+  },
+
+  renderTemplate: function() {
+    this.render('locations.index',{into:'application'});
   }
-  
-  // setupController: function(controller) {
-  //   console.log("Returning locations from route...");
-  //   controller.set('content', App.Location.find());
-  // }
+
+});
+
+App.LocationsEditRoute = Ember.Route.extend({
+
+  renderTemplate: function() {
+    console.log("Rendering template...");
+    this.render('locations.edit',{into:'application'});
+  }
+
 });
 
 
