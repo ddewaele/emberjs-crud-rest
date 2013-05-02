@@ -52,22 +52,11 @@ App.Location = DS.Model.extend({
 
 
 App.LocationsIndexRoute = Ember.Route.extend({
-  
-  // model: function() {
-  // 	console.log("returning locations");
-  //   return App.Location.find();
-  // },
 
   setupController: function(controller) {
     // Set the IndexController's `title`
     controller.set('content', App.Location.find());
-  }  ,
-
-// setupController: function(controller) {
-//     console.log("Returning locations from route...");
-//     controller.set('content', App.Location.find());
-//   }
-  
+  },
 
   renderTemplate: function() {
     console.log("Rendering locationsRouteTemplate");
@@ -76,50 +65,69 @@ App.LocationsIndexRoute = Ember.Route.extend({
 
 });
 
-// App.LocationsEditRoute = Ember.Route.extend({
+App.LocationsEditRoute = Ember.Route.extend({
 
-//   renderTemplate: function() {
-//     console.log("Rendering template...");
-//     this.render('locations.new',{into:'application'});
-//   }
-
-// });
-
-App.LocationsNewRoute = Ember.Route.extend({
-  model: function() {
-    return App.Location.createRecord();
-  }
-});
-
-
-App.LocationsNewController = Ember.ObjectController.extend({
-  addItem: function(location) {
-    //this.get("store").commit();
-    //this.get("target").transitionTo("locations");
-    location.transaction.commit();
-    this.get("target").transitionTo("locations");
+  setupController: function(controller, model) {
+      this.controllerFor('locations.edit').setProperties({isNew: false,content:model});
   },
 
-  isNewObject: function() {
-    var model = this.get('content');
-    return (!model.id);
-  }.property(),
-
-  dataFromController: function() {
-  	return "dataFromControllerValue";
-  }.property()
+  renderTemplate: function() {
+    this.render('locations.edit',{into:'application'});
+  }
 
 });
+
+App.LocationsNewRoute = Ember.Route.extend({
+  // model: function() {
+  //   return App.Location.createRecord();
+  // },
+  setupController: function(controller, model) {
+      //var controller = this.controllerFor('locations.edit');
+      this.controllerFor('locations.edit').setProperties({isNew: true,content:App.Location.createRecord()});
+      // controller.set('content',App.Location.createRecord());
+      // controller.set('isNew',true);
+  },
+  renderTemplate: function() {
+    this.render('locations.edit',{into:'application'});
+  }
+
+});
+
+
+// App.LocationsNewController = Ember.ObjectController.extend({
+//   addItem: function(location) {
+//     //this.get("store").commit();
+//     //this.get("target").transitionTo("locations");
+//     location.transaction.commit();
+//     this.get("target").transitionTo("locations");
+//   },
+
+//   isNewObject: function() {
+//     var model = this.get('content');
+//     return (!model.id);
+//   }.property(),
+
+//   dataFromController: function() {
+//   	return "dataFromControllerValue";
+//   }.property()
+
+// });
 
 App.LocationsEditController = Ember.ObjectController.extend({
   updateItem: function(location) {
     location.transaction.commit();
     this.get("target").transitionTo("locations");
   },
- isNewObject: function() {
-    var model = this.get('content');
-    return (!model.id);
-  }.property(),
+
+  isNew: function() {
+    console.log("calculating isNew");
+    return this.get('content').get('id');
+  }.property()
+
+ // isNewObject: function() {
+ //    var model = this.get('content');
+ //    return (!model.id);
+ //  }.property(),
 
 
 });

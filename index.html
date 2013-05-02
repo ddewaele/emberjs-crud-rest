@@ -70,23 +70,6 @@
     
   </script>
 
-  <script type="text/x-handlebars" data-template-name="locations/new" >
-      <h1>New location</h1>
-    
-        {{#if controller.isNewObject}}
-      <h1>New location</h1>
-    {{else}}
-      <h1>Edit location</h1>
-    {{/if}}
-    
-    {{partial "locationForm"}}
-
-    <p>
-      <button {{action addItem this}}>Add record</button>
-    </p>
-
-  </script>
-
   <script type="text/x-handlebars" data-template-name="_locationForm" >
       <form class="form-horizontal">
       <div class="control-group">
@@ -112,9 +95,7 @@
 
   <script type="text/x-handlebars" data-template-name="locations/edit" >
     
-    <h1>Edit location</h1>
-
-    {{#if controller.isNewObject}}
+    {{#if controller.isNew}}
       <h1>New location</h1>
     {{else}}
       <h1>Edit location</h1>
