@@ -10,14 +10,31 @@
 <body>
 
   <script type="text/x-handlebars" data-template-name="application">
-    <h1>Hello Ember.JS</h1>
-    
-    {{#linkTo "index"}}Home{{/linkTo}} |
-    {{#linkTo "locations"}}Locations{{/linkTo}} |
-    {{#linkTo "about"}}About{{/linkTo}} |
+  <div class="container">
+    <h1>Ember.js - Express REST API combo</h1>
 
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+              {{#view App.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+              {{#view App.NavView}}
+                {{#linkTo "locations"}}Locations{{/linkTo}}
+              {{/view}}
+              
 
+              {{#view App.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
     {{outlet}}
+  </div>
   </script>  
 
   <script type="text/x-handlebars" data-template-name="index" >
@@ -28,9 +45,16 @@
 
   <script type="text/x-handlebars" data-template-name="locations/index">
   <p>
-    locations template... length = {{content.length}}
+    Nr of locations = {{content.length}}
   </p>
-    <table>
+    <table  class="table table-hover">
+    <tr>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Accuracy</th>
+      <th></th>
+      <th></th>
+    </tr>
       {{#each location in model}}
         <tr>
         <td>{{location.latitude}}</td>
@@ -48,6 +72,12 @@
 
   <script type="text/x-handlebars" data-template-name="locations/new" >
       <h1>New location</h1>
+    
+        {{#if controller.isNewObject}}
+      <h1>New location</h1>
+    {{else}}
+      <h1>Edit location</h1>
+    {{/if}}
     
     {{partial "locationForm"}}
 
@@ -81,7 +111,15 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="locations/edit" >
+    
+    <h1>Edit location</h1>
+
+    {{#if controller.isNewObject}}
+      <h1>New location</h1>
+    {{else}}
       <h1>Edit location</h1>
+    {{/if}}
+
       {{partial "locationForm"}}
 
       <p>

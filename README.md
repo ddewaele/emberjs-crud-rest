@@ -486,3 +486,106 @@ As you can see, the title and the save button differ, so these remain in their c
 
 The last thing we need to do is implement the ```updateItem``` function on our controller.
 
+
+
+##Styling
+
+Developers usually aren't the worlds greatest designers. Most projects start out without any kind of effort on styling or applying css on the pages, resulting in pre-century-looking webpages. Luckily a designer is called into the rescue before the product is shipped.
+
+For our styling exercise I'm going to use Twitter Bootstrap. A nice CSS / JS combo to get us up and running quickly.
+
+We're going to replace the navigation links on top of the page :
+
+    {{#linkTo "index"}}Home{{/linkTo}} |
+    {{#linkTo "locations"}}Locations{{/linkTo}} |
+    {{#linkTo "about"}}About{{/linkTo}} |
+
+
+We're going to be using the Twitter bootstrap navbar instead.
+
+In an ideal world we could have simplty rewritten the navigation like this :
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              <li>{{#linkTo "index"}}Home{{/linkTo}}</li>
+              <li>{{#linkTo "locations"}}Locations{{/linkTo}}</li>
+              <li>{{#linkTo "about"}}About{{/linkTo}}</li>
+            </ul>
+          </div>
+        </div>
+
+But unfortunately, the Twitter BootStrap navbar doesn't play nice with our linkTo helper. Although the transitions into the routes work, the tabs aren't getting highlighted at all. 
+
+Twitter Bootstraps highlights the tab by putting an active class on the LI element, where-as Ember.JS puts on the anchor element.
+
+<ul class="nav">
+  <li><a id="ember312" class="ember-view" href="#/">Home</a></li>
+  <li class="active"><a id="ember316" class="ember-view" href="#/locations">Locations</a></li>
+  <li><a id="ember317" class="ember-view" href="#/about">About</a></li>
+</ul>
+
+
+In order to fix that, we'll create a new View.
+
+	App.NavView = Ember.View.extend({
+	  tagName: 'li',
+	  classNameBindings: ['active'],
+
+	  didInsertElement: function () {
+	        this._super();
+	        this.notifyPropertyChange('active');
+	        var _this = this;
+	        this.get('parentView').on('click', function () {
+	            _this.notifyPropertyChange('active');
+	        });
+	  },
+
+	  active: function() {
+	    return this.get('childViews.firstObject.active');
+	  }.property()
+	});
+
+With this view in place, we can rewrite our navigation bar like this :
+
+
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+				{{#view App.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+			  {{#view App.NavView}}
+                {{#linkTo "locations"}}Locations{{/linkTo}}
+              {{/view}}
+              
+
+ 			  {{#view App.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
+  
+  
+ If you look at the HTML that is being generated, you'll see that our custom view has now wrapped the anchor element with an LI element, and is also placing the active css class on the selected navigation element.  
+
+	<ul class="nav">
+	  <li id="ember278" class="ember-view">
+	    <a id="ember281" class="ember-view" href="#/">Home</a>
+	  </li>
+	  
+	  <li id="ember285" class="ember-view active">
+	    <a id="ember286" class="ember-view active" href="#/locations">Locations</a>
+	  </li>
+	  
+
+	  <li id="ember292" class="ember-view">
+	    <a id="ember293" class="ember-view" href="#/about">About</a>
+	  </li>
+	</ul>
+

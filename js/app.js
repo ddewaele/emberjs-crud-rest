@@ -76,14 +76,14 @@ App.LocationsIndexRoute = Ember.Route.extend({
 
 });
 
-App.LocationsEditRoute = Ember.Route.extend({
+// App.LocationsEditRoute = Ember.Route.extend({
 
-  renderTemplate: function() {
-    console.log("Rendering template...");
-    this.render('locations.edit',{into:'application'});
-  }
+//   renderTemplate: function() {
+//     console.log("Rendering template...");
+//     this.render('locations.new',{into:'application'});
+//   }
 
-});
+// });
 
 App.LocationsNewRoute = Ember.Route.extend({
   model: function() {
@@ -101,8 +101,8 @@ App.LocationsNewController = Ember.ObjectController.extend({
   },
 
   isNewObject: function() {
-  	console.log("inside isNewObject");
-  	return true;
+    var model = this.get('content');
+    return (!model.id);
   }.property(),
 
   dataFromController: function() {
@@ -115,7 +115,12 @@ App.LocationsEditController = Ember.ObjectController.extend({
   updateItem: function(location) {
     location.transaction.commit();
     this.get("target").transitionTo("locations");
-  }
+  },
+ isNewObject: function() {
+    var model = this.get('content');
+    return (!model.id);
+  }.property(),
+
 
 });
 
@@ -132,4 +137,21 @@ App.LocationsIndexController = Ember.ArrayController.extend({
 });
 
 
+App.NavView = Ember.View.extend({
+    tagName: 'li',
+    classNameBindings: ['active'],
+
+    didInsertElement: function () {
+          this._super();
+          this.notifyPropertyChange('active');
+          var _this = this;
+          this.get('parentView').on('click', function () {
+              _this.notifyPropertyChange('active');
+          });
+    },
+
+    active: function() {
+      return this.get('childViews.firstObject.active');
+    }.property()
+  });
 
