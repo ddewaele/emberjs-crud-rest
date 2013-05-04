@@ -46,25 +46,35 @@
   <script type="text/x-handlebars" data-template-name="locations/index">
   <p>
     Nr of locations = {{content.length}}
+    Controller = {{controller.content}}
   </p>
-    <table  class="table table-hover">
-    <tr>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Accuracy</th>
-      <th></th>
-      <th></th>
-    </tr>
-      {{#each location in model}}
-        <tr>
-        <td>{{location.latitude}}</td>
-        <td>{{location.longitude}}</td>
-        <td>{{location.accuracy}}</td>
-        <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
-        <td><button {{action removeItem location}}>Delete</button></td>
-        </tr>
-      {{/each}}
-    </table>
+
+test : {{locsPresent content}}
+
+    {{#if locationsPresent}}
+
+      <table class="table table-hover">
+      <tr>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Accuracy</th>
+        <th></th>
+        <th></th>
+      </tr>
+        {{#each location in model}}
+          <tr>
+          <td>{{location.latitude}}</td>
+          <td>{{location.longitude}}</td>
+          <td>{{location.accuracy}}</td>
+          <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+          <td><button {{action removeItem location}}>Delete</button></td>
+          </tr>
+        {{/each}}
+      </table>
+
+    {{else}}
+      No locations present.
+    {{/if}}
 
     <p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
     

@@ -3,24 +3,12 @@ App = Ember.Application.create({ LOG_TRANSITIONS: true});
 App.Router.map(function() {
   this.route("index", { path: "/" });
   this.route("about", { path: "/about" });
-
-
   
   this.resource("locations", function(){
       console.log("Inside locations....");
       this.route("new", {path:"/new"});
       this.route("edit", {path: "/:location_id" });
   });
-
-  // this.route("locations", {path:"/locations"});
-  // this.route("locations.edit", {path: "/locations/:location_id" });
-
-});
-
-App.ApplicationController = Ember.Controller.extend({
-  
-  // some property of our controller.
-  globalString: 'this is the application string',
 
 });
 
@@ -49,17 +37,19 @@ App.Location = DS.Model.extend({
 
 });
 
-
-
 App.LocationsIndexRoute = Ember.Route.extend({
 
   setupController: function(controller) {
-    // Set the IndexController's `title`
-    controller.set('content', App.Location.find());
+
+    var locations = App.Location.find();
+    locations.on('didLoad', function() {
+      console.log(" +++ Locations loaded!");
+    });
+
+    controller.set('content', locations);
   },
 
   renderTemplate: function() {
-    console.log("Rendering locationsRouteTemplate");
     this.render('locations.index',{into:'application'});
   }
 
@@ -78,40 +68,14 @@ App.LocationsEditRoute = Ember.Route.extend({
 });
 
 App.LocationsNewRoute = Ember.Route.extend({
-  // model: function() {
-  //   return App.Location.createRecord();
-  // },
   setupController: function(controller, model) {
-      //var controller = this.controllerFor('locations.edit');
-      this.controllerFor('locations.edit').setProperties({isNew: true,content:App.Location.createRecord()});
-      // controller.set('content',App.Location.createRecord());
-      // controller.set('isNew',true);
+        this.controllerFor('locations.edit').setProperties({isNew: true,content:App.Location.createRecord()});
   },
   renderTemplate: function() {
     this.render('locations.edit',{into:'application'});
   }
 
 });
-
-
-// App.LocationsNewController = Ember.ObjectController.extend({
-//   addItem: function(location) {
-//     //this.get("store").commit();
-//     //this.get("target").transitionTo("locations");
-//     location.transaction.commit();
-//     this.get("target").transitionTo("locations");
-//   },
-
-//   isNewObject: function() {
-//     var model = this.get('content');
-//     return (!model.id);
-//   }.property(),
-
-//   dataFromController: function() {
-//   	return "dataFromControllerValue";
-//   }.property()
-
-// });
 
 App.LocationsEditController = Ember.ObjectController.extend({
   updateItem: function(location) {
@@ -124,11 +88,6 @@ App.LocationsEditController = Ember.ObjectController.extend({
     return this.get('content').get('id');
   }.property()
 
- // isNewObject: function() {
- //    var model = this.get('content');
- //    return (!model.id);
- //  }.property(),
-
 
 });
 
@@ -136,13 +95,28 @@ App.LocationsEditController = Ember.ObjectController.extend({
 App.LocationsIndexController = Ember.ArrayController.extend({
   removeItem: function(location) {
     location.on("didDelete", this, function() {
-		console.log("record deleted");
+	   	console.log("record deleted");
     });
 
     location.deleteRecord();
     location.transaction.commit();
-  }
+  },
+
+  locationsPresent: function() {
+    var itemsPresent = this.get('content').content.length > 0;
+    console.log(" +++ Computed locationsPresent prop with value " + itemsPresent);
+    return itemsPresent;
+  }.property("content.@each")
+  //}.property("content.isLoaded")
 });
+
+Ember.Handlebars.registerBoundHelper('locsPresent', 
+    function(myBinding, options) {
+      console.log(myBinding);
+      console.log(options);
+      return true;
+    }
+);
 
 
 App.NavView = Ember.View.extend({
