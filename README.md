@@ -431,7 +431,7 @@ We're passing the location as an argument to the removeItem method and call the 
 For the update scenario we're going to re-use much of the templating we already have in place from the create scenario.
 After all, the form to create or update a record is almost identical.
 
-We could simply copy-paste our ```locations/new``` template into a ```locations/edit``` template, but that would introduce a lot of code duplication. Instead, we're going to use ```parials``` to move the common part out of the template (the form elements).
+We could simply copy-paste our ```locations/new``` template into a ```locations/edit``` template, but that would introduce a lot of code duplication. Instead, we're going to use ```partials``` to move the common part out of the template (the form elements).
 
 In order to do that, replace the following form element code from the ```locations/new``` template into a new template called ```_locationForm```. The fact that it starts with an underscore means that it is considered a partial.
 
