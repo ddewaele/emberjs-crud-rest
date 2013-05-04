@@ -592,18 +592,18 @@ With this view in place, we can rewrite our navigation bar like this :
 
 #References
 
--[Getting Into Ember.js](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js/)
--[Getting into Ember.js: The Next Steps](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js-part-2/)
--[Getting Into Ember: Part 3](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js-part-3/)
--[Getting Into Ember: Part 4](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-part-4/)
+- [Getting Into Ember.js](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js/)
+- [Getting into Ember.js: The Next Steps](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js-part-2/)
+- [Getting Into Ember: Part 3](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js-part-3/)
+- [Getting Into Ember: Part 4](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-part-4/)
 
--http://tech.pro/tutorial/1166/getting-started-with-emberjs
+- http://tech.pro/tutorial/1166/getting-started-with-emberjs
 
--http://eviltrout.com/2013/03/17/adding-to-discourse-part-2.html
--https://github.com/cmoel/tom_dale_ember_screencast
+- http://eviltrout.com/2013/03/17/adding-to-discourse-part-2.html
+- https://github.com/cmoel/tom_dale_ember_screencast
 
--https://github.com/heroku/ruby-rails-unicorn-sample
--https://github.com/emberjs/ember-rails
+- https://github.com/heroku/ruby-rails-unicorn-sample
+- https://github.com/emberjs/ember-rails
 
--http://www.youtube.com/watch?v=aBvOXnTG5Ag
--http://www.youtube.com/watch?v=obaWh8xL2C0
+- http://www.youtube.com/watch?v=aBvOXnTG5Ag
+- http://www.youtube.com/watch?v=obaWh8xL2C0
