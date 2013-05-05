@@ -21,7 +21,7 @@ This will bootstrap the Ember application. Just think of this as some internal p
 ##Templates
 
 
-Ember.js uses Handlebars templates to render items on the screen. Each template is embedded in a script tag and can be given a name using the data-template-name attribute. If no data-template-name is provided, Ember.JS will consider this to be the application template, meaning that it will be processed (shown) when the application starts. This is your most top-level template.
+Ember.js uses Handlebars templates to render items on the screen. Each template is embedded in a script tag and can be given a name using the **data-template-name** attribute. If no **data-template-name** is provided, Ember.JS will consider this to be the **application** template, meaning that it will be processed (shown) when the application starts. This is your most top-level template.
 
 So the following Handlebars template definition
 
