@@ -1,4 +1,12 @@
-**Note:** Project still in progress ....
+**Important Note:** 
+
+This Project still a work-in-progress. Open items / questions that need clarification and fixes in the code:
+
+When creating a new record, if the user decides to do something else (not clicking save), the record still shows up in the list
+[When to call createRecord and how to handle store transactions](http://stackoverflow.com/questions/16263915/when-to-call-createrecord-and-how-to-handle-store-transactions)
+
+When a record is removed from the DB by an external process, it is not picked up by the model/controller. The deleted record is still shown in the list.
+[EmberJS Model.find not up-to-date with underlying store](http://stackoverflow.com/questions/16380143/emberjs-model-find-not-up-to-date-with-underlying-store)
 
 ##Project folder/file structure
 
@@ -64,7 +72,9 @@ into
       {{outlet}}
     </script>
 
-If we now go to the index, you'll see that "Hello Ember.JS" is rendered on the screen, along with the text from our index template.
+If we now go to the index, you'll see that "Hello Ember.JS" is rendered on the screen, along with the text from our index template. 
+
+If we want to introduce other templates in our application, we need to have some way of mapping a URL to a template. That's what Ember routes are all about. But before we dive into routes, let's take a step back and see how Ember.JS was able to display the text from our existing templates.
 
 ## Ember auto generated code.
 
@@ -90,7 +100,7 @@ Ember uses a Router to determine what it should render when the user enters a UR
 
 This router makes it possible for us to go the index page, and have EmberJS render the index template for us.	
 
-If you go to another router, for example by going to index.html#/about , you'll see the following error msg :
+If you go to another router, for example by going to **index.html#/about** , you'll see the following error msg :
 
 	Uncaught Error: No route matched the URL '/about' 
 
