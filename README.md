@@ -2,10 +2,10 @@
 
 This Project still a work-in-progress. Open items / questions that need clarification and fixes in the code:
 
-When creating a new record, if the user decides to do something else (not clicking save), the record still shows up in the list
+-When creating a new record, if the user decides to do something else (not clicking save), the record still shows up in the list
 [When to call createRecord and how to handle store transactions](http://stackoverflow.com/questions/16263915/when-to-call-createrecord-and-how-to-handle-store-transactions)
 
-When a record is removed from the DB by an external process, it is not picked up by the model/controller. The deleted record is still shown in the list.
+- When a record is removed from the DB by an external process, it is not picked up by the model/controller. The deleted record is still shown in the list.
 [EmberJS Model.find not up-to-date with underlying store](http://stackoverflow.com/questions/16380143/emberjs-model-find-not-up-to-date-with-underlying-store)
 
 http://jsfiddle.net/ddewaele/EkU4V/
