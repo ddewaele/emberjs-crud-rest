@@ -277,6 +277,16 @@ Providing you have setup your route like this:
 	  }
 	});
 
+Or you could even do this:
+
+	{{#each location in controller}}
+		<tr>
+		<td>{{location.latitude}}</td>
+		<td>{{location.longitude}}</td>
+		<td>{{location.accuracy}}</td>
+		</tr>
+	{{/each}}
+
 ### The master-detail
 
 Now that we are able to display an overview of records, we should also be able to display the details of an individual record.
@@ -391,11 +401,7 @@ Actions are defined on Controllers, so we'll create a controller for the new loc
 
 	App.LocationsNewController = Ember.ObjectController.extend({
 	  addItem: function(location) {
-	    //this.get("store").commit();
-	    //this.get("target").transitionTo("locations");
 	    location.transaction.commit();
-	    this.get("target").transitionTo("locations");
-	    
 	  }
 	});	
 
@@ -413,7 +419,7 @@ In order to fix this, we need to prepare a new record before we tranition to the
 	  }
 	});
 
-The LocationsNewRout provides an empty model that we can use to populate, and then save it as a new location.
+The LocationsNewRout now provides an empty model that is bound to the "new location" page, ready for the user to start populating, and saving it as a new location.
 
 ## Deleting records
 
@@ -442,6 +448,8 @@ The action will be implemented on the controller. As the action is triggered fro
 	});
 
 We're passing the location as an argument to the removeItem method and call the deleteRecord on it.
+
+**Note:** Keep in mind that the actual delete is done in an asynchronous way. You can use the **didDelete** callback to be notified when the record was deleted succesfully. This is useful if you want to display a notiication to the user that the record was in fact deleted. There's no guarantee that the record is deleted immediately, so waiting for the callback is always a good idea. In this sample we're simply writing a message to the console when the delete was executed.
 
 ## Updating records
 
@@ -502,8 +510,6 @@ Our "create" use-case should still work, and now we can create a new template fo
 As you can see, the title and the save button differ, so these remain in their corresponding template. The form elements that are identical for both templates have been put in a partial to promote re-use.
 
 The last thing we need to do is implement the ```updateItem``` function on our controller.
-
-
 
 ##Styling
 
@@ -606,6 +612,13 @@ With this view in place, we can rewrite our navigation bar like this :
 	  </li>
 	</ul>
 
+## Finishing up
+
+[TODO]
+
+## Conclusions
+
+[TODO]
 
 #References
 

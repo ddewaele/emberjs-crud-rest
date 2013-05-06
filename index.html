@@ -46,10 +46,7 @@
   <script type="text/x-handlebars" data-template-name="locations/index">
   <p>
     Nr of locations = {{content.length}}
-    Controller = {{controller.content}}
   </p>
-
-test : {{locsPresent content}}
 
     {{#if locationsPresent}}
 
@@ -61,7 +58,7 @@ test : {{locsPresent content}}
         <th></th>
         <th></th>
       </tr>
-        {{#each location in model}}
+        {{#each location in controller}}
           <tr>
           <td>{{location.latitude}}</td>
           <td>{{location.longitude}}</td>
