@@ -8,6 +8,9 @@ When creating a new record, if the user decides to do something else (not clicki
 When a record is removed from the DB by an external process, it is not picked up by the model/controller. The deleted record is still shown in the list.
 [EmberJS Model.find not up-to-date with underlying store](http://stackoverflow.com/questions/16380143/emberjs-model-find-not-up-to-date-with-underlying-store)
 
+http://jsfiddle.net/ddewaele/EkU4V/
+
+
 ##Project folder/file structure
 
 We'll create a project with the following filestructure.
@@ -17,6 +20,10 @@ We'll create a project with the following filestructure.
 - The CSS folder contains the Twitter Bootstrap stylesheet as well as our own stylesheet.
 - The JS folder contains the Javascript files for EmberJS, EmberData, Twitter bootstrap, Handlebars and jQueryy. It also contains our EmberJS application.
 
+
+##Project dependencies
+
+In order for this application to work, a REST backend needs to be available. I've pushed a very simple NodeJS based backend in the [location-rest-api Github repository](https://github.com/ddewaele/location-rest-api).
 
 ##Bootstrap Ember
 
