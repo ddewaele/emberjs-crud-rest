@@ -9,7 +9,7 @@ This Project still a work-in-progress. Open items / questions that need clarific
 [EmberJS Model.find not up-to-date with underlying store](http://stackoverflow.com/questions/16380143/emberjs-model-find-not-up-to-date-with-underlying-store)
 
 
-
+This project uses EmberJS 1.0.0-rc.6 and EmberData 0.13. EmberJS and EmberData builds can be downloaded [here](http://builds.emberjs.com/).
 
 ##Project folder/file structure
 
