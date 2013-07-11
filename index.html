@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ember Starter Kit</title>
+<title>Ember CRUD Demo</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
   <link rel="stylesheet" href="css/style.css">
@@ -44,11 +44,11 @@
 
 
   <script type="text/x-handlebars" data-template-name="locations/index">
-  <p>
-    Nr of locations = {{content.length}}
-  </p>
+
 
     {{#if locationsPresent}}
+
+      <p>Nr of locations = {{content.length}}</p>
 
       <table class="table table-hover">
       <tr>
