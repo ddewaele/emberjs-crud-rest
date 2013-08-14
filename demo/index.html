@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember CRUD Demo</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+  <div class="container">
+    <h1>Ember.js - Express REST API combo</h1>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+              {{#view App.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+              {{#view App.NavView}}
+                {{#linkTo "locations"}}Locations{{/linkTo}}
+              {{/view}}
+              
+
+              {{#view App.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
+    {{outlet}}
+  </div>
+  </script>  
+
+  <script type="text/x-handlebars" data-template-name="index" >
+    <p>This is the homepage....</p>
+
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="locations/index">
+
+
+    {{#if locationsPresent}}
+
+      <p>Nr of locations = {{content.length}}</p>
+
+      <table class="table table-hover">
+      <tr>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Accuracy</th>
+        <th></th>
+        <th></th>
+      </tr>
+        {{#each location in controller}}
+          <tr>
+          <td>{{location.latitude}}</td>
+          <td>{{location.longitude}}</td>
+          <td>{{location.accuracy}}</td>
+          <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+          <td><button {{action removeItem location}}>Delete</button></td>
+          </tr>
+        {{/each}}
+      </table>
+
+    {{else}}
+      No locations present.
+    {{/if}}
+
+    <p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
+    
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_locationForm" >
+      <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="latitude">Latitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="latitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="latitude">Longitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="longitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="accuracy">Accuracy</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="accuracy"}}
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="locations/edit" >
+    
+    {{#if controller.isNew}}
+      <h1>New location</h1>
+    {{else}}
+      <h1>Edit location</h1>
+    {{/if}}
+
+      {{partial "locationForm"}}
+
+      <p>
+        <button {{action updateItem this}}>Update record</button>
+      </p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about" >
+      <p>This is the about page.</p>
+  </script>
+
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/handlebars-1.0.0-rc.4.js"></script>
+  <script src="js/ember-1.0.0-rc.7.js"></script>
+  <script src="js/ember-data-0.13.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
