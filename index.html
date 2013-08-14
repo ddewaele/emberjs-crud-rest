@@ -63,7 +63,7 @@
           <td>{{location.latitude}}</td>
           <td>{{location.longitude}}</td>
           <td>{{location.accuracy}}</td>
-          <td>{{#linkTo locations.edit location}}Edit{{/linkTo}}</td>
+          <td>{{#linkTo "locations.edit" location}}Edit{{/linkTo}}</td>
           <td><button {{action removeItem location}}>Delete</button></td>
           </tr>
         {{/each}}
@@ -121,7 +121,7 @@
 
   <script src="js/jquery-1.9.1.js"></script>
   <script src="js/handlebars-1.0.0-rc.4.js"></script>
-  <script src="js/ember-1.0.0-rc.6.js"></script>
+  <script src="js/ember-1.0.0-rc.7.js"></script>
   <script src="js/ember-data-0.13.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/app.js"></script>
