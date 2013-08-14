@@ -129,7 +129,7 @@ Now when we access the about URL, we'll see that error goes away, and Ember.JS n
 		 <p>This is the about page.</p>
 	 </script>
 
-We'll do some more advanced things with our routers in a while, but what's important to remember is that ... [TODO]
+We'll do some more advanced things with our routers in a while, but what's important to remember is that ... TODO
 
 ### The controller.
 
@@ -193,7 +193,7 @@ At this point you'll see that the REST adapter is trying to connect to a REST AP
 
 	OPTIONS file:///locations  
 
-[TODO explain how this works , CORS , .... ]
+TODO explain how this works , CORS , .... 
 
 If you want to override the URL that EmberJS shoud connect to you need to repoen it.
 
@@ -203,7 +203,9 @@ If you want to override the URL that EmberJS shoud connect to you need to repoen
 
 Our REST server is built using Node.JS and is using MongoDB for storage. When persisting objects in MongoDB it automatically adds an identifier to the object using the field "_id".
 
-In order for our Ember.JS application to work with objects coming from the MongoDB, we need to setup our RESTAdapter to deal with this _id type. We can do this by creating a custom Adapter that extends the basic RESTAdapter in order to override the primaryKey property in the serializer.
+In order for our Ember.JS application to work with objects coming from the MongoDB, we need to setup our RESTAdapter to deal with this ```_id``` type. 
+
+We can do this by creating a custom Adapter that extends the basic RESTAdapter in order to override the primaryKey property in the serializer.
 
 	App.Adapter = DS.RESTAdapter.extend({
 	  serializer: DS.RESTSerializer.extend({
@@ -302,9 +304,9 @@ There are 2 ways to implement a master/detail screen.
 
 We can organize our templates in such a way that the locations overview template (locations) is the parent of the detail location template (locations.edit). Again, Ember does this through naming conventions.
 
-"locations" is considered a parent of the "locations.edit" template. This means that the edit template will be shown together with its parent, providing that the parent has an ```{{outlet}}``` defined.
+"locations" is considered a parent of the "locations.edit" template. This means that the edit template will be shown together with its parent, providing that the parent has an {{outlet}} defined.
 
-[TODO insert picture]
+TODO insert picture
 
 If you want to seperate master and detail in 2 seperate pages, you need to put the 2 templates on the same level.
 
@@ -314,7 +316,7 @@ In order to have a seperate master and detail we need to re-organize our templat
 
 Instead of having a "locations" - "locations.edit" template hierarchy, we'll put both templates on the same level by renaming locations to "locations.index".
 
-[TODO insert picture]
+TODO insert picture
 
 Keep in mind that this forces us to rename our Router as well :
 
@@ -619,11 +621,11 @@ With this view in place, we can rewrite our navigation bar like this :
 
 ## Finishing up
 
-[TODO]
+TODO
 
 ## Conclusions
 
-[TODO]
+TODO
 
 #References
 
