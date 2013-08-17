@@ -1,13 +1,17 @@
 **Important Note:** 
 
-This Project still a work-in-progress. Open items / questions that need clarification and fixes in the code:
+The goal of this project is to show a working CRUD sample.
+
+![main screen](https://dl.dropboxusercontent.com/u/13246619/Blog%20Articles/EmberJS/intro.png)
+
+It is still very much a work-in-progress but it is fully functional as it is. 
+Open items / questions that need clarification and fixes in the code:
 
 - When creating a new record, if the user decides to do something else (not clicking save), the record still shows up in the list
 [When to call createRecord and how to handle store transactions](http://stackoverflow.com/questions/16263915/when-to-call-createrecord-and-how-to-handle-store-transactions)
 
 - When a record is removed from the DB by an external process, it is not picked up by the model/controller. The deleted record is still shown in the list.
 [EmberJS Model.find not up-to-date with underlying store](http://stackoverflow.com/questions/16380143/emberjs-model-find-not-up-to-date-with-underlying-store)
-
 
 This project uses EmberJS 1.0.0-rc.6 and EmberData 0.13. EmberJS and EmberData builds can be downloaded [here](http://builds.emberjs.com/).
 
