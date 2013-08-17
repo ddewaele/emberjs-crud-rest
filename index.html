@@ -45,21 +45,26 @@
 
   <script type="text/x-handlebars" data-template-name="locations/index">
 
-
     {{#if locationsPresent}}
 
       <p>Nr of locations = {{content.length}}</p>
 
+      {{#if itemsSelected}}
+        <p><button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button></p>
+      {{/if}}
+
       <table class="table table-hover">
       <tr>
+        <th>Selected</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Accuracy</th>
         <th></th>
         <th></th>
       </tr>
-        {{#each location in controller}}
-          <tr>
+        {{#each location in controller itemController="locationsEdit"}}
+          <tr {{bindAttr class="selected:warning"}}>
+          <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
           <td>{{location.latitude}}</td>
           <td>{{location.longitude}}</td>
           <td>{{location.accuracy}}</td>
@@ -74,6 +79,7 @@
     {{/if}}
 
     <p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
+
     
   </script>
 
