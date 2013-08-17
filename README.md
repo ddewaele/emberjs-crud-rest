@@ -1,6 +1,7 @@
 **Important Note:** 
 
-The goal of this project is to show a working CRUD sample.
+The goal of this project is to show a working CRUD sample. 
+Icons provided by [Custom Icon Design](http://www.customicondesign.com/).
 
 ![main screen](https://dl.dropboxusercontent.com/u/13246619/Blog%20Articles/EmberJS/intro.png)
 

@@ -68,8 +68,8 @@
           <td>{{location.latitude}}</td>
           <td>{{location.longitude}}</td>
           <td>{{location.accuracy}}</td>
-          <td>{{#linkTo "locations.edit" location}}Edit{{/linkTo}}</td>
-          <td><button {{action removeItem location}}>Delete</button></td>
+          <td>{{#linkTo "locations.edit" location}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
+          <td><a href="#" {{action removeItem location}}><img src="images/delete-icon.png" border="0"/></a></td>
           </tr>
         {{/each}}
       </table>
@@ -78,7 +78,7 @@
       No locations present.
     {{/if}}
 
-    <p>{{#linkTo "locations.new"}}New location{{/linkTo}}</p>
+    <p>{{#linkTo "locations.new"}}<img src="images/add-icon.png"/> New location{{/linkTo}}</p>
 
     
   </script>
