@@ -1,4 +1,107 @@
-When the REST call /locations returns the following data :
+## The REST RESTSerializer
+
+In my previous version, the RESTSerializer was stored as property in the RESTAdapter.
+The primary key also used to be a function.
+
+	App.Adapter = DS.RESTAdapter.extend({
+	  serializer: DS.RESTSerializer.extend({
+	    primaryKey: function (type){
+	      return '_id';
+	   }
+	})
+
+I extracted the RESTSerializer in its own ApplicationSerializer.
+Also notice how the ```primaryKey``` is now a property.
+
+	App.ApplicationSerializer = DS.RESTSerializer.extend({
+	  primaryKey: '_id'
+	});
+
+
+## The RESTAdapter
+
+Before the RESTAdapter was configured with ```url``` :
+
+	DS.RESTAdapter.reopen({
+	  url: 'http://localhost:3000'
+	});
+
+It now needs to be configured with ```host``` :
+
+	DS.RESTAdapter.reopen({
+	  host: 'http://localhost:3000'
+	});
+
+## The on function
+
+No longer working:
+
+    locations.on('didLoad', function() {
+      console.log(" +++ Locations loaded!");
+    });
+
+## Creating records
+
+A new record used to be created like this:
+
+	var newLocation = App.Location.createRecord()
+
+And now it is created like this
+
+	var newLocation = this.store.createRecord('location',{});
+
+## Updating records
+
+This used to be done like this:
+
+	location.transaction.commit();
+
+And is now done like this:
+
+	location.save();
+
+## Deleting records
+
+This used to be done like this:
+ 
+     location.deleteRecord();
+     location.transaction.commit();
+     
+And is now done like this:
+
+     location.destroyRecord();
+
+## Retrieving the length
+
+Used to have this:
+
+var itemsPresent = this.get('content').content.length > 0;
+
+And now this:
+
+var itemsPresent = this.get('content').get('length') > 0;
+
+
+## Finding records.
+
+Used to have this:
+
+	var locations = App.Location.find();
+
+Now need to have this:
+
+	var locations = this.get('store').find('location');
+
+
+## CamelCasing calls to the store.
+
+While fixing the code I had written the following (notice the upper-case L in Location) :
+
+var locations = this.get('store').find('Location');
+
+This resulted in an error.
+
+The REST call /locations returned the following (correct) data :
 
 	{
 	  "locations": [
@@ -17,7 +120,7 @@ When the REST call /locations returns the following data :
 	  ]
 	}
 
-I'm getting the following error :
+But I was getting this erorr :
 
 	Uncaught Error: Assertion Failed: Error: Assertion Failed: The response from a findAll must be an Array, not undefined ember-1.5.1.js:73
 	Ember.assert ember-1.5.1.js:73
@@ -37,7 +140,7 @@ I'm getting the following error :
 	jQuery.ajaxTransport.send.callback
 
 
-When the REST call /locations returns the following data :
+In an attempt to fix it I changed the REST call to ommit the root element
 
 	[
 	  {
@@ -54,7 +157,7 @@ When the REST call /locations returns the following data :
 	  }
 	]
 
-I'm getting the following error
+But then I got the following error because EmberData could not find the correct model.
 
 	Error: No model was found for '0'
 	    at new Error (native)
@@ -67,6 +170,21 @@ I'm getting the following error
 	    at file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:10396:34
 	    at invokeCallback (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:10013:19)
 	    at publish (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:9683:9) 
-	    
+
+
+## Deleting records
+
+
+	Error: Attempted to handle event `pushedData` on <App.Location:ember418:535fd4bf7f4a0b0e11000002> while in state root.deleted.uncommitted. 
+	    at new Error (native)
+	    at Error.Ember.Error (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:910:19)
+	    at Ember.Object.extend._unhandledEvent (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:5717:15)
+	    at Ember.Object.extend.send (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:5660:16)
+	    at Ember.Object.extend.pushedData (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:5755:14)
+	    at Ember.Object.extend.setupData (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:5990:26)
+	    at Ember.Object.extend._load (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:9782:16)
+	    at Ember.Object.extend.push (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:9889:14)
+	    at null.<anonymous> (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-data-1.0.0-beta.7.f87cba88.js:9956:23)
+	    at Array.map (native) 
 
 
