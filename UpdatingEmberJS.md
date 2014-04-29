@@ -188,3 +188,27 @@ But then I got the following error because EmberData could not find the correct 
 	    at Array.map (native) 
 
 
+
+## Deprecated messages:
+
+Some of the deprecated message I received:
+
+	event.returnValue is deprecated. Please use the standard event.preventDefault() instead. jquery-1.9.1.js:3345
+	Attr.specified is deprecated. Its value is always true. jquery-1.9.1.js:6209
+	
+	WARNING: The 'linkTo' view helper is deprecated in favor of 'link-to' ember-1.5.1.js:3521
+	WARNING: The 'bindAttr' view helper is deprecated in favor of 'bind-attr' ember-1.5.1.js:3521
+	
+	WARNING: The current default is deprecated but will prefer to handle actions directly on the controller instead of a similarly named action in the actions hash. To turn off this deprecated feature set: Ember.FEATURES['ember-routing-drop-deprecated-action-style'] = true ember-1.5.1.js:3521
+	
+
+	DEPRECATION: Action handlers implemented directly on controllers are deprecated in favor of action handlers on an `actions` object ( action: `updateItem` on <App.LocationsEditController:ember475>)
+	        at Ember.ControllerMixin.Ember.Mixin.create.deprecatedSend (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:20775:11)
+	        at Ember.ActionHandler.Ember.Mixin.create.send (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:18679:31)
+	        at runRegisteredAction (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:38512:25)
+	        at Object.Backburner.run (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:6249:26)
+	        at Object.Ember.run (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:6664:27)
+	        at Object.handleRegisteredAction [as handler] (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:38510:15)
+	        at HTMLButtonElement.<anonymous> (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/ember-1.5.1.js:22259:23)
+	        at HTMLBodyElement.jQuery.event.dispatch (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/jquery-1.9.1.js:3074:9)
+	        at HTMLBodyElement.jQuery.event.add.elemData.handle (file://localhost/Users/ddewaele/Projects/emberjs-crud-rest/js/jquery-1.9.1.js:2750:46) 
