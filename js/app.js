@@ -12,21 +12,21 @@ App.Router.map(function() {
 
 });
 
-App.Adapter = DS.RESTAdapter.extend({
-  serializer: DS.RESTSerializer.extend({
-    primaryKey: function (type){
-      return '_id';
-   }
-  })
+App.ApplicationSerializer = DS.RESTSerializer.extend({
+  primaryKey: '_id'
 });
 
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  //namespace: 'api'
+});
+
+
 App.Store = DS.Store.extend({
-  revision: 12,
-  adapter: 'App.Adapter'
+  adapter: 'App.ApplicationAdapter'
 });
 
 DS.RESTAdapter.reopen({
-  url: 'http://localhost:3000'
+  host: 'http://localhost:3000'
 });
 
 
@@ -41,7 +41,7 @@ App.LocationsIndexRoute = Ember.Route.extend({
 
   setupController: function(controller) {
 
-    var locations = App.Location.find();
+    var locations = this.get('store').find('location'); // App.Location.find();
     locations.on('didLoad', function() {
       console.log(" +++ Locations loaded!");
     });
@@ -69,7 +69,8 @@ App.LocationsEditRoute = Ember.Route.extend({
 
 App.LocationsNewRoute = Ember.Route.extend({
   setupController: function(controller, model) {
-        this.controllerFor('locations.edit').setProperties({isNew: true,content:App.Location.createRecord()});
+        var newLocation = this.store.createRecord('location',{});
+        this.controllerFor('locations.edit').setProperties({isNew: true,content:newLocation});
   },
   renderTemplate: function() {
     this.render('locations.edit',{into:'application'});
@@ -79,7 +80,7 @@ App.LocationsNewRoute = Ember.Route.extend({
 
 App.LocationsEditController = Ember.ObjectController.extend({
   updateItem: function(location) {
-    location.transaction.commit();
+    location.save();
     this.get("target").transitionTo("locations");
   },
 
@@ -107,8 +108,7 @@ App.LocationsIndexController = Ember.ArrayController.extend({
 	   	console.log("record deleted");
     });
 
-    location.deleteRecord();
-    location.transaction.commit();
+    location.destroyRecord();
   },
 
   removeSelectedLocations: function() {
@@ -118,14 +118,14 @@ App.LocationsIndexController = Ember.ArrayController.extend({
     } else { 
         output = "";
         for (i=0 ; i<arr.length ; i++) { 
-          arr[i].deleteRecord()
-          arr[i].store.commit();
+          arr[i].destroyRecord()
         }
     }
   },
 
   locationsPresent: function() {
-    var itemsPresent = this.get('content').content.length > 0;
+
+    var itemsPresent = this.get('content').get('length') > 0;
     console.log(" +++ Computed locationsPresent prop with value " + itemsPresent);
     return itemsPresent;
   }.property("content.@each")
