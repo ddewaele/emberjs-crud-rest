@@ -42,10 +42,6 @@ App.LocationsIndexRoute = Ember.Route.extend({
   setupController: function(controller) {
 
     var locations = this.get('store').find('location'); // App.Location.find();
-    locations.on('didLoad', function() {
-      console.log(" +++ Locations loaded!");
-    });
-
     controller.set('content', locations);
   },
 
