@@ -1,5 +1,13 @@
 **Important Note:** 
 
+Code has been updated to 
+
+- ember-1.5.1.js
+- ember-data-1.0.0-beta.7
+- handlebars-v1.3.0
+
+The docs below still have some rc7 references. 
+
 The goal of this project is to show a working CRUD sample. 
 Icons provided by [Custom Icon Design](http://www.customicondesign.com/).
 
