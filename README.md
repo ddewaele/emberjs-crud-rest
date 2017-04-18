@@ -24,7 +24,7 @@ Open items / questions that need clarification and fixes in the code:
 
 This project uses EmberJS 1.0.0-rc.6 and EmberData 0.13. EmberJS and EmberData builds can be downloaded [here](http://builds.emberjs.com/).
 
-##Project folder/file structure
+## Project folder/file structure
 
 We'll create a project with the following filestructure.
 
@@ -34,11 +34,11 @@ We'll create a project with the following filestructure.
 - The JS folder contains the Javascript files for EmberJS, EmberData, Twitter bootstrap, Handlebars and jQueryy. It also contains our EmberJS application.
 
 
-##Project dependencies
+## Project dependencies
 
 In order for this application to work, a REST backend needs to be available. I've pushed a very simple NodeJS based backend in the [location-rest-api Github repository](https://github.com/ddewaele/location-rest-api).
 
-##Bootstrap Ember
+## Bootstrap Ember
 
 We'll start our application in Javascript by creating an Ember Application
 
@@ -46,7 +46,7 @@ We'll start our application in Javascript by creating an Ember Application
 
 This will bootstrap the Ember application. Just think of this as some internal plumbing that needs to be done before you can start using EmberJS. We've enabled the ```LOG_TRANSITIONS``` option for debugging purposes, as it will print out messages each time we transition from one screen to another.
 
-##Templates
+## Templates
 
 
 Ember.js uses Handlebars templates to render items on the screen. Each template is embedded in a script tag and can be given a name using the **data-template-name** attribute. If no **data-template-name** is provided, Ember.JS will consider this to be the **application** template, meaning that it will be processed (shown) when the application starts. This is your most top-level template.
@@ -524,7 +524,7 @@ As you can see, the title and the save button differ, so these remain in their c
 
 The last thing we need to do is implement the ```updateItem``` function on our controller.
 
-##Styling
+## Styling
 
 Developers usually aren't the worlds greatest designers. Most projects start out without any kind of effort on styling or applying css on the pages, resulting in pre-century-looking webpages. Luckily a designer is called into the rescue before the product is shipped.
 
@@ -633,7 +633,7 @@ With this view in place, we can rewrite our navigation bar like this :
 
 [TODO]
 
-#References
+# References
 
 - [Getting Into Ember.js](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js/)
 - [Getting into Ember.js: The Next Steps](http://net.tutsplus.com/tutorials/javascript-ajax/getting-into-ember-js-part-2/)
